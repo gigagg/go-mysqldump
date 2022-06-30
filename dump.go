@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"database/sql"
+	"encoding/hex"
 	"errors"
 	"fmt"
 	"io"
@@ -476,7 +477,7 @@ func (table *table) RowBuffer() *bytes.Buffer {
 			if len(*s) == 0 {
 				b.WriteString(nullType)
 			} else {
-				fmt.Fprintf(&b, "_binary '%s'", sanitize(string(*s)))
+				fmt.Fprintf(&b, "0x%s", hex.EncodeToString(*s))
 			}
 		default:
 			fmt.Fprintf(&b, "'%s'", value)
