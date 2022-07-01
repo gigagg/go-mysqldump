@@ -477,7 +477,7 @@ func (table *table) RowBuffer() *bytes.Buffer {
 			if len(*s) == 0 {
 				b.WriteString(nullType)
 			} else {
-				fmt.Fprintf(&b, "0x%s", hex.EncodeToString(*s))
+				fmt.Fprintf(&b, "_binary 0x%s", hex.EncodeToString(*s))
 			}
 		default:
 			fmt.Fprintf(&b, "'%s'", value)
